@@ -6,12 +6,12 @@ import org.aspectj.lang.annotation.Aspect;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import top.ulane.logext.config.LogAspect;
+import top.ulane.logext.config.LogAspectExt;
 
 @Aspect
 @Order(100)
 @Component
-public class ControllerLogAspect extends LogAspect {
+public class ControllerLogAspect extends LogAspectExt {
 	
 	@Around("execution(public * com..*.impl.*.*(..))")
 	public Object controllerArount(ProceedingJoinPoint joinPoint) throws Throwable{
