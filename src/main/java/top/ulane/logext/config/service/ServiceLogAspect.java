@@ -1,22 +1,24 @@
 package top.ulane.logext.config.service;
 
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
+import org.aopalliance.intercept.MethodInterceptor;
+import org.aopalliance.intercept.MethodInvocation;
 
 import top.ulane.logext.config.LogAspectExt;
 
-@Aspect
-@Order(100)
-@Component
-public class ServiceLogAspect extends LogAspectExt{
+//@Aspect
+//@Order(100)
+//@Component
+public class ServiceLogAspect extends LogAspectExt implements MethodInterceptor{
+
+	@Override
+	public Object invoke(MethodInvocation invocation) throws Throwable {
+		return serviceAroundInvoke(invocation);
+	}
 	
-//	@Around("execution(public * com..*.business.read.*.*(..)) || execution(public * com..*.business.write.*.*(..)) ")
-	@Around("execution(public * com..*.business..*.*(..))")
-    public Object serviceAround(ProceedingJoinPoint joinPoint) throws Throwable {
-		return serviceAroundInvoke(joinPoint);
-    }
+//	@Around("execution(public * cn..*.ulane.read.*.*(..)) || execution(public * cn..*.ulane.write.*.*(..)) ")
+//	@Around("execution(public * cn..*.ulane..*.*(..))")
+//    public Object serviceAround(ProceedingJoinPoint joinPoint) throws Throwable {
+//		return serviceAroundInvoke(joinPoint);
+//    }
 	
 }
