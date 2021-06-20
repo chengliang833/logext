@@ -3,16 +3,16 @@ package top.ulane.logext.config.controller;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 
-import top.ulane.logext.config.LogAspectExt;
+import wang.ulane.log.LogAspect;
 
 //@Aspect
 //@Order(100)
 //@Component
-public class ControllerLogAspect extends LogAspectExt implements MethodInterceptor{
+public class ControllerLogAspect implements MethodInterceptor{
 
 	@Override
 	public Object invoke(MethodInvocation invocation) throws Throwable {
-		return controllerAroundInvoke(invocation);
+		return LogAspect.controllerAroundInvoke(invocation);
 	}
 	
 //	@Around("execution(public * cn..*.ulane.*.*(..))")

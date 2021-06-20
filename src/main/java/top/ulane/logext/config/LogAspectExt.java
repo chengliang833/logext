@@ -11,9 +11,11 @@ import wang.ulane.proxy.ProxyClassLog;
 public class LogAspectExt extends LogAspect{
 
 	static {
+		System.setProperty("dubbo.application.logger", "slf4j");
+		
 		ProxyClass.initClass("properties/app.properties", "logext.proxys.initclass");
 		Map<String, List<MethodParam>> map = ProxyClass.getMethodList("properties/app.properties", "logext.proxys.list");
 		ProxyClassLog.proxyMethodLog(map);
 	}
-	
+
 }
