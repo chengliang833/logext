@@ -3,18 +3,21 @@ package top.ulane.logext.config.controller;
 import org.springframework.aop.aspectj.AspectJExpressionPointcutAdvisor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
-import top.ulane.logext.config.LogAspectExt;
+import top.ulane.logext.autoconfigure.ConditionalOnProperty;
 
-@Configuration
-public class ControllerAdvisorConfig extends LogAspectExt {
+//@Configuration
+@ConditionalOnProperty(value="logext.controller.around", matchIfExist=true)
+public class ControllerAdvisorConfig {
 	
-	@Value("${logext.controller.around:execution(public * cn..*.ulane.*.*(..))}")
+//	@Value("${logext.controller.around:execution(public * cn..*.ulane.*.*(..))}")
+	@Value("${logext.controller.around}")
 	private String pointcut;
 
-	@Bean
+	//通过@import导入时，必须配置name，否则会和service覆盖
+	@Bean(name="controllerPointcutAdvisor")
 	public AspectJExpressionPointcutAdvisor configurabledvisor() {
+//		System.out.println("pointcut:"+pointcut);
 		AspectJExpressionPointcutAdvisor advisor = new AspectJExpressionPointcutAdvisor();
 		advisor.setExpression(pointcut);
 		advisor.setOrder(100);
