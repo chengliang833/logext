@@ -11,11 +11,18 @@ public class LogextProperties {
 	}
 	
 	public static String getProperty(String key){
+		checkProperties();
 		return properties.getProperty(key);
 	}
 
 	public static String getProperty(String key, String defaultValue){
+		checkProperties();
 		return properties.getProperty(key, defaultValue);
 	}
 	
+	private static void checkProperties(){
+		if(properties == null){
+			throw new RuntimeException("UlaneAutoConfigurationImportSelector 未加载");
+		}
+	}
 }
