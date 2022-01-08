@@ -23,6 +23,9 @@ public class ProxyConfig implements BeanDefinitionRegistryPostProcessor{
 //		System.out.println(0);
 		ProxyClass.initClass("logext.properties", "logext.proxys.initclass");
 		Map<String, List<MethodParam>> map = ProxyClass.getMethodList("logext.properties", "logext.proxys.list");
+		//可以考虑SPI
+		HttpProxy.filterHttpProxy(map);
+//		XmlReaderProxy.filterHttpProxy(map);
 //		System.out.println(map);
 //		System.out.println(ProxyClass.getRelateClassPaths());
 		for(String className:map.keySet()){

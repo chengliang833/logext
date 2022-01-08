@@ -9,6 +9,8 @@ import top.ulane.logext.autoconfigure.ConditionalOnProperty;
 import top.ulane.logext.config.LogAspectExt;
 import top.ulane.logext.config.aop.AopConfig;
 import top.ulane.logext.config.controller.ControllerAdvisorConfig;
+import top.ulane.logext.config.dubbo.CustomBeanDefinitionForDubboReferenceBean;
+import top.ulane.logext.config.dubbo.CustomBeanDefinitionForDubboServiceBean;
 import top.ulane.logext.config.dubbo.DubboLogLevel;
 import top.ulane.logext.config.mybatis.MybatisCustomLog;
 import top.ulane.logext.config.proxy.ProxyConfig;
@@ -35,6 +37,8 @@ class CustomImports implements ImportSelector{
 			ServiceAdvisorConfig.class.getCanonicalName(),
 			MybatisCustomLog.class.getCanonicalName(),
 			ProxyConfig.class.getCanonicalName(),
+			CustomBeanDefinitionForDubboServiceBean.class.getCanonicalName(),
+			CustomBeanDefinitionForDubboReferenceBean.class.getCanonicalName(),
 			DeferredImports.class.getCanonicalName()
 		};
 	}
